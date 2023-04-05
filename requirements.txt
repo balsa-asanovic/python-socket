@@ -1,5 +1,6 @@
 Flask
 Gunicorn
 flask-socketio
+flask_cors
 socketio
 CORS
