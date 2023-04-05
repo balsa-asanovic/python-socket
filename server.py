@@ -8,17 +8,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins='https://imaginative-cat-228fb6.netlify.app/')
+socketio = SocketIO(app, cors_allowed_origins='https://imaginative-cat-228fb6.netlify.app')
 
 emitting = False
 frequency = 10000
 thread = None
-
-def application(environ, start_response):
-    status = '200 OK'
-    headers = [('Content-type', 'text/plain')]
-    start_response(status, headers)
-    return [b"Hello World!"]
 
 def emit_message():
     global emitting
