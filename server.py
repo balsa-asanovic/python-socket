@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins='https://imaginative-cat-228fb6.netlify.app')
+socketio = SocketIO(app, cors_allowed_origins='https://imaginative-cat-228fb6.netlify.app/')
 
 emitting = False
 frequency = 10000
@@ -32,6 +32,8 @@ def handle_connect():
 
 @socketio.on('disconnect')
 def handle_disconnect():
+    global emitting
+    emitting = False
     print('Client disconnected')
 
 
@@ -40,6 +42,12 @@ def handle_message(data):
     global frequency
     frequency = data
     print(f'Received message: {data}')
+
+@socketio.on('stop')
+def handle_stop():
+    global emitting
+    emitting = False
+    print(f'Stopped emitting')
 
 if __name__ == '__main__':
     socketio.run(app, host='localhost', port=8080)
