@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins='https://imaginative-cat-228fb6.netlify.app/')
+socketio = SocketIO(app, cors_allowed_origins='https://imaginative-cat-228fb6.netlify.app')
 
 emitting = False
 frequency = 10000
